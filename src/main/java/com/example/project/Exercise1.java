@@ -15,8 +15,49 @@ public class Exercise1 {
 
     public boolean esBalanceado(String s) {
         MyStack<Character> stack = new LinkedListStack<>();
-        // Colocar codigo aqui
+        
+        // RECORRER LA CADENA
+		for (int i = 0; i < s.length(); i++) {
+			
+			// AUXILIAR DE RECORRIDO
+			char aux = s.charAt(i);
+			
+			// SOLO CARACTERES VÁLIDOS
+			if (aux == '[' || aux == '(' || aux == '{') {
+				stack.push(aux); // AÑADIR A LA PILA
+			}
+			
+			// CUANDO ENCUENTRA CARACTER DE CIERRE
+			else if (aux == ']') {
+				
+				// SI LA PILA ESTÁ VACÍA O EL VALOR QUE ELIMINA NO CORRESPONDE A SU APRETURA
+				if (stack.isEmpty() || stack.pop() != '[') {
+					return false;
+				}
+			}
+			
+			// CUANDO ENCUENTRA CARACTER DE CIERRE
+			else if (aux == ')') {
+				
+				// SI LA PILA ESTÁ VACÍA O EL VALOR QUE ELIMINA NO CORRESPONDE A SU APRETURA
+				if (stack.isEmpty() || stack.pop() != '(') {
+					return false;
+				}
+			}
+			
+			// CUANDO ENCUENTRA CARACTER DE CIERRE
+			else if (aux == '}') {
+				
+				// SI LA PILA ESTÁ VACÍA O EL VALOR QUE ELIMINA NO CORRESPONDE A SU APRETURA
+				if (stack.isEmpty() || stack.pop() != '{') {
+					return false;
+				}
+			}
 
-        return false;
+		}
+		
+		// LUEGO DE VERIFICAR QUE TODAS LAS PAREJAS SE ELIMINARON
+		return stack.isEmpty();
+        
     }
 }
